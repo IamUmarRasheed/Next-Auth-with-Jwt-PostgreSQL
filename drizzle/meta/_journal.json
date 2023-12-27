@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1703523888714,
+      "tag": "0000_slim_silver_fox",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1703660366519,
+      "tag": "0001_damp_tony_stark",
+      "breakpoints": true
+    }
+  ]
+}
