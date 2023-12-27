@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
     const body = (await request.json()) as RegisterUserInput;
     const data = RegisterUserSchema.parse(body);
     const hashedPassword = await hash(data.password, 12);
+    console.log("Before database insert");
     const user = await db
       .insert(users)
       .values({
@@ -27,6 +28,7 @@ export async function POST(request: NextRequest) {
         password: hashedPassword,
       })
       .returning();
+        console.log("After database insert");
     return new NextResponse(
       JSON.stringify({
         status: "success",
@@ -38,12 +40,13 @@ export async function POST(request: NextRequest) {
       }
     );
   } catch (error: any) {
+    console.error("Error in API route:", error);
     if (error instanceof ZodError) {
       return getErrorResponse(400, "failed validation", error);
     }
     if (error.code === "23505") {
       return getErrorResponse(409, "user with that email already exists");
     }
-    return getErrorResponse;
+    return getErrorResponse(500, "Internal Server Error");
   }
 }

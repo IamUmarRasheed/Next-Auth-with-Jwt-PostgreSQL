@@ -18,7 +18,7 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   password: varchar("password", { length: 255 }).notNull(),
   isadmin: boolean("isadmin").default(false),
-  isverify: boolean("isadmin").default(false),
+  isverify: boolean("isverify").default(false),
   createdat:timestamp('createdat').defaultNow(),
   updatedat:timestamp('updatedat').defaultNow()
 });
